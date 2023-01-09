@@ -1,27 +1,35 @@
 import logo from './logo.svg';
 import './App.css';
-import "@aws-amplify/ui-react/styles.css";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import {
-  withAuthenticator,
-  Button,
-  Heading,
-  Image,
-  View,
-  Card,
-} from "@aws-amplify/ui-react";
+  Navigation,
+  Footer,
+  Home,
+  About,
+  Contact,
+  Blog,
+  Posts,
+  Post,
+} from "./components";
 
 
-function App( { signOut}) {
+function App() {
   return (
-    <View className="App">
-      <Card>
-      <Image src={logo} className="App-logo" alt="logo" />
-        <Heading level={1}>We now have Auth!</Heading>
-      </Card>
-      <Button onClick = {signOut}>Sign out</Button>
-    </View>
+    <Router>
+    <Navigation />
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/contact" element={<Contact />} />
+      <Route path="/blog" element={<Blog />}>
+        <Route path="" element={<Posts />} />
+        <Route path=":postSlug" element={<Post />} />
+      </Route>
+    </Routes>
+    <Footer />
+  </Router>
   );
 }
       
 
-export default withAuthenticator(App);
+export default App;
