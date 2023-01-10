@@ -19,7 +19,7 @@ function Navigation() {
               </li>
               <li className="nav-item">
                 <NavLink className="nav-link" to="/about">
-                  Administrators
+                  About
                 </NavLink>
               </li>
               <li className="nav-item">
